@@ -13,11 +13,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Java 17
-      - name: Setup Java 17
+      # 2️⃣ Setup Java 11 (matches pom.xml)
+      - name: Setup Java 11
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '11'
           distribution: 'temurin'
 
       # # 3️⃣ Clean & Package + SonarQube Scan
@@ -50,7 +50,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_KEY }}
           script: |
-            sudo rm -f /home/ec2-user/app/backend/target/datastore-0.0.7.jar
+            sudo rm -f /home/ec2-user/app/datastore-0.0.7.jar
             sudo chown -R ec2-user:ec2-user /home/ec2-user/app
 
       # 6️⃣ Copy JAR to EC2
@@ -94,7 +94,7 @@ jobs:
             sudo chown ec2-user:ec2-user /var/log/app
             sudo chmod 777 /var/log/app
 
-            cd /home/ec2-user/app/target
+            cd /home/ec2-user/app
 
             nohup env \
             MYSQL_HOST=database-1.cstu40q04izz.us-east-1.rds.amazonaws.com \
