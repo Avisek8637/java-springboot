@@ -25,7 +25,7 @@ jobs:
             cd ~
 
             if [ ! -d Java-springboot-project ]; then
-              git clone https://github.com/ManmathGantayat/Java-springboot-project.git
+              git clone 
             fi
 
             cd Java-springboot-project
